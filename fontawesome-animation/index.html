@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        .fa {
+            font-size: 50px;
+        }
+
+        .rotate {
+            transition: .3s;
+            transform: rotate(0);
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="hourglass" class="fa"></div>
+
+    <script>
+        var $hourglass = document.getElementById("hourglass");
+        var unit = 500;
+        function animate() {
+            $hourglass.classList.remove("rotate");
+
+            $hourglass.innerHTML = "&#xf251";
+            setTimeout(function () {
+                $hourglass.innerHTML = "&#xf252";
+            }, unit)
+
+            setTimeout(function () {
+                $hourglass.innerHTML = "&#xf253";
+            }, 2 * unit)
+            setTimeout(function () {
+                $hourglass.classList.add("rotate");
+            }, 3 * unit)
+
+        }
+        animate();
+        setInterval(animate, 4 * unit)
+    </script>
+</body>
+
+</html>
