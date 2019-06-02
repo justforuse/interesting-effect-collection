@@ -1,0 +1,124 @@
+$PI: 3.14159;
+$internal-length: 2 * $PI * 30;
+$middle-length: 2 * $PI * 40;
+$external-length: 2 * $PI * 50;
+$duration: 5s;
+$color: #2394fe;
+.container {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  .loading-wrapper {
+    width: 40px;
+  }
+}
+.loading {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+  circle {
+    stroke: $color;
+    transform-origin: center;
+  }
+  line {
+    stroke: $color;
+    transform-origin: center;
+  }
+  .internal-circle {
+    stroke-dasharray: $internal-length / 2;
+    stroke-dashoffset: $internal-length / 4;
+    animation: internal-animation $duration linear infinite;
+  }
+  .middle-circle {
+    stroke-dasharray: $middle-length / 2;
+    stroke-dashoffset: $middle-length / 2;
+    animation: middle-animation $duration linear infinite;
+  }
+  .external-circle {
+    stroke-dasharray: $external-length * 0.75;
+    stroke-dashoffset: $external-length / 4;
+    animation: external-animation $duration linear infinite;
+  }
+  .hour-hand {
+    animation: hour-animation $duration linear infinite;
+  }
+  .minute-hand {
+    animation: minute-animation $duration linear infinite;
+  }
+}
+
+@keyframes hour-animation {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes minute-animation {
+  100% {
+    transform: rotate(3turn);
+  }
+}
+
+@keyframes internal-animation {
+  0% {
+    transform: rotate(0);
+    opacity: 0;
+  }
+  40% {
+    transform: rotate(1turn);
+    opacity: 1;
+  }
+  60% {
+    transform: rotate(1turn);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(2turn);
+    opacity: 0;
+  }
+}
+
+@keyframes middle-animation {
+  0% {
+    transform: rotate(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  43% {
+    transform: rotate(1.25turn);
+    opacity: 0.8;
+  }
+  57% {
+    transform: rotate(1.25turn);
+    opacity: 0.8;
+  }
+  100% {
+    transform: rotate(2turn);
+    opacity: 0;
+  }
+}
+
+@keyframes external-animation {
+  0% {
+    transform: rotate(0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.1;
+  }
+  40% {
+    transform: rotate(1.75turn);
+    opacity: 0.6;
+  }
+  60% {
+    transform: rotate(1.75turn);
+    opacity: 0.6;
+  }
+  100% {
+    transform: rotate(3turn);
+    opacity: 0;
+  }
+}
